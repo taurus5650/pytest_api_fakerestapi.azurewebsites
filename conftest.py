@@ -1,6 +1,20 @@
 import pytest
+import logging
+
+LOGGER = logging.getLogger(__name__)
+fakerestApi = "https://fakerestapi.azurewebsites.net"
+
 
 @pytest.fixture()
+def api_v1_books ():
+   api = "/api/v1/Books"
+   LOGGER.info (api + " Triggered")
+   return fakerestApi + api
 
-def supply_url () :
-   return "https://fakerestapi.azurewebsites.net/api/v1/Books"
+
+@pytest.fixture()
+def api_v1_users ():
+   api = "/api/v1/Users"
+   LOGGER.info (api + " Triggered")
+   return fakerestApi + api
+
