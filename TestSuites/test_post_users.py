@@ -7,7 +7,7 @@ import logging
 LOGGER = logging.getLogger(__name__)
 
 
-def test_post_users_validId(api_v1_users):
+def test_post_users_validId_p0(api_v1_users):
     url = api_v1_users
 
     Id = 5
