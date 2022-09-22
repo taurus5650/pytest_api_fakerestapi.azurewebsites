@@ -11,63 +11,28 @@ def test_post_users_validId_p0(api_v1_users):
     url = api_v1_users
 
     Id = 5
-    UserName = "User 5"
-    Password = "Password5"
+    UserName = "UserTest"
+    Password = "PasswordTest"
 
-
+    headers = {
+        "accept": "*/*",
+        "Content-Type": "application/json; v=1.0"
+    }
     data = {
         "id": Id,
         "userName": UserName,
         "password": Password
     }
-    headers = {
-        "accept": "*/*",
-        "Content-Type": "application/json; v=1.0"
-    }
+
     resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
     LOGGER.info("Req : \n" + str(data))
     LOGGER.info("Resp : \n" + str(jsonResp))
 
     assert resp.status_code == 200
-    #actualResult = [value for elem in jsonResp
-    #                  for value in elem.values()]
-    #assert Id in actualResult
-    #assert UserName in actualResult
-    #assert Password in actualResult
-    #assert jsonResp[4]["id"] == Id, resp.text
-    #assert jsonResp[4]["userName"] == UserName, resp.text
-    #assert jsonResp[4]["password"] == Password, resp.text
-    # for i in range(len(jsonResp)):
-        # assert jsonResp[i]["id"] == Id, resp.text
-        # assert jsonResp[i]["userName"] == UserName, resp.text
-        # assert jsonResp[i]["password"] ==Password, resp.text
-
-
-def test_post_users_inValidUser_p1(api_v1_users):
-    randomNum = random.randint(9000000, 9999999)
-    url = api_v1_users
-
-    Id = randomNum
-    UserName = "UserInvalid"
-    Password = "PasswordInvalid"
-
-    data = {
-        "id": Id ,
-        "userName": UserName,
-        "password": Password
-    }
-    resp = requests.get(url, data=data)
-    jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
-
-    assert resp.status_code == 200
-    actualResult = [value for elem in jsonResp
-                    for value in elem.values()]
-    assert Id != actualResult
-    assert UserName != actualResult
-    assert Password != actualResult
+    assert jsonResp["id"] == Id, resp.text
+    assert jsonResp["userName"] == UserName, resp.text
+    assert jsonResp["password"] == Password, resp.text
 
 
 def test_post_users_userNameNullalble_p2(api_v1_users):
@@ -75,22 +40,28 @@ def test_post_users_userNameNullalble_p2(api_v1_users):
     url = api_v1_users
 
     Id = randomNum
-    UserName = ""
-    UserNameResp = "User 1"
-    Password = "PasssWord"
+    UserName = None
+    Password = "PasswordTest"
 
+    headers = {
+        "accept": "*/*",
+        "Content-Type": "application/json; v=1.0"
+    }
     data = {
-        "id": Id ,
+        "id": Id,
         "userName": UserName,
         "password": Password
     }
-    resp = requests.get(url, data=data)
+
+    resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
     LOGGER.info("Req : \n" + str(data))
     LOGGER.info("Resp : \n" + str(jsonResp))
 
     assert resp.status_code == 200
-    assert jsonResp[0]["userName"] == UserNameResp, resp.text
+    assert jsonResp["id"] == Id, resp.text
+    assert jsonResp["userName"] == UserName, resp.text
+    assert jsonResp["password"] == Password, resp.text
 
 
 def test_post_users_passwordNullalble_p2(api_v1_users):
@@ -98,40 +69,165 @@ def test_post_users_passwordNullalble_p2(api_v1_users):
     url = api_v1_users
 
     Id = randomNum
-    UserName = "User 2"
-    Password = ""
-    PasswordResp = "Password2"
+    UserName = "UserTest"
+    Password = None
 
+    headers = {
+        "accept": "*/*",
+        "Content-Type": "application/json; v=1.0"
+    }
     data = {
-        "id": Id ,
+        "id": Id,
         "userName": UserName,
         "password": Password
     }
-    resp = requests.get(url, data=data)
+
+    resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
     LOGGER.info("Req : \n" + str(data))
     LOGGER.info("Resp : \n" + str(jsonResp))
 
     assert resp.status_code == 200
-    assert jsonResp[1]["password"] == PasswordResp, resp.text
+    assert jsonResp["id"] == Id, resp.text
+    assert jsonResp["userName"] == UserName, resp.text
+    assert jsonResp["password"] == Password, resp.text
 
 
-def test_post_users_idAsString_p2(api_v1_users):
+def test_post_users_idAsStringWithNum_p2(api_v1_users):
     url = api_v1_users
 
-    Id = "6"
-    UserName = "User 5"
-    Password = "Password5"
+    IdString = "78"
+    Id = 78
+    UserName = "UserTest"
+    Password = "PasswordTest"
 
-    data = {
-        "id": Id
+    headers = {
+        "accept": "*/*",
+        "Content-Type": "application/json; v=1.0"
     }
-    resp = requests.post(url, data=data)
+    data = {
+        "id": IdString,
+        "userName": UserName,
+        "password": Password
+    }
+
+    resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
     LOGGER.info("Req : \n" + str(data))
     LOGGER.info("Resp : \n" + str(jsonResp))
 
     assert resp.status_code == 200
-    actualResult = [value for elem in jsonResp
-                      for value in elem.values()]
-    assert Id not in actualResult
+    assert jsonResp["id"] == Id, resp.text
+    assert jsonResp["userName"] == UserName, resp.text
+    assert jsonResp["password"] == Password, resp.text
+
+
+def test_post_users_idAsStringWithWords_p3(api_v1_users):
+    url = api_v1_users
+
+    Id = "string"
+    UserName = "UserTest"
+    Password = "PasswordTest"
+
+    headers = {
+        "accept": "*/*",
+        "Content-Type": "application/json; v=1.0"
+    }
+    data = {
+        "id": Id,
+        "userName": UserName,
+        "password": Password
+    }
+
+    resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
+    jsonResp = json.loads(resp.text)
+    LOGGER.info("Req : \n" + str(data))
+    LOGGER.info("Resp : \n" + str(jsonResp))
+
+    assert resp.status_code == 400
+    assert jsonResp["errors"]["$.id"] == ['The JSON value could not be converted to System.Int32. Path: $.id | LineNumber: 0 | BytePositionInLine: 15.']
+
+
+def test_post_users_userNameWithSymbol_p1(api_v1_users):
+    url = api_v1_users
+
+    Id = 86
+    UserName = "User (Test) Hi2 %"
+    Password = "PasswordTest"
+
+    headers = {
+        "accept": "*/*",
+        "Content-Type": "application/json; v=1.0"
+    }
+    data = {
+        "id": Id,
+        "userName": UserName,
+        "password": Password
+    }
+
+    resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
+    jsonResp = json.loads(resp.text)
+    LOGGER.info("Req : \n" + str(data))
+    LOGGER.info("Resp : \n" + str(jsonResp))
+
+    assert resp.status_code == 200
+    assert jsonResp["id"] == Id, resp.text
+    assert jsonResp["userName"] == UserName, resp.text
+    assert jsonResp["password"] == Password, resp.text
+
+
+def test_post_users_passwordWithSymbol_p1(api_v1_users):
+    url = api_v1_users
+
+    Id = 1099
+    UserName = "UserTest"
+    Password = "Pass 9(word) ^&*"
+
+    headers = {
+        "accept": "*/*",
+        "Content-Type": "application/json; v=1.0"
+    }
+    data = {
+        "id": Id,
+        "userName": UserName,
+        "password": Password
+    }
+
+    resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
+    jsonResp = json.loads(resp.text)
+    LOGGER.info("Req : \n" + str(data))
+    LOGGER.info("Resp : \n" + str(jsonResp))
+
+    assert resp.status_code == 200
+    assert jsonResp["id"] == Id, resp.text
+    assert jsonResp["userName"] == UserName, resp.text
+    assert jsonResp["password"] == Password, resp.text
+
+
+def test_post_users_largeUserId_p3(api_v1_users):
+    randomNum = random.randint(900000000, 999999999)
+    url = api_v1_users
+
+    Id = randomNum
+    UserName = "UserTest"
+    Password = "PasswordTest"
+
+    headers = {
+        "accept": "*/*",
+        "Content-Type": "application/json; v=1.0"
+    }
+    data = {
+        "id": Id,
+        "userName": UserName,
+        "password": Password
+    }
+
+    resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
+    jsonResp = json.loads(resp.text)
+    LOGGER.info("Req : \n" + str(data))
+    LOGGER.info("Resp : \n" + str(jsonResp))
+
+    assert resp.status_code == 200
+    assert jsonResp["id"] == Id, resp.text
+    assert jsonResp["userName"] == UserName, resp.text
+    assert jsonResp["password"] == Password, resp.text
