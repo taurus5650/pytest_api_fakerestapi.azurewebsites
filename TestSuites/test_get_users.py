@@ -30,14 +30,16 @@ def test_get_users_validId_p0(api_v1_users):
     LOGGER.info("Resp : \n" + str(jsonResp))
 
     assert resp.status_code == 200
+    # Fetch all keywords
     actualResult = [value for elem in jsonResp
                       for value in elem.values()]
+    # When keyword - Username == User 5 in resp then pass
     assert Id in actualResult
     assert UserName in actualResult
     assert Password in actualResult
-    #assert jsonResp[4]["id"] == Id, resp.text
-    #assert jsonResp[4]["userName"] == UserName, resp.text
-    #assert jsonResp[4]["password"] == Password, resp.text
+    # assert jsonResp[4]["id"] == Id, resp.text
+    # assert jsonResp[4]["userName"] == UserName, resp.text
+    # assert jsonResp[4]["password"] == Password, resp.text
     # for i in range(len(jsonResp)):
         # assert jsonResp[i]["id"] == Id, resp.text
         # assert jsonResp[i]["userName"] == UserName, resp.text
