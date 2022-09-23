@@ -26,8 +26,11 @@ def test_get_users_validId_p0(api_v1_users):
 
     resp = requests.request("GET", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    #LOGGER.info("Req : \n" + str(data))
+    #LOGGER.info("Resp : \n" + str(jsonResp))
+    #Pretty print, use json.dumps, indent
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 200
     # Fetch all keywords
