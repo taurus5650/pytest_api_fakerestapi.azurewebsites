@@ -18,8 +18,8 @@ def test_get_books_url_validId_p0(api_v1_books):
 
     resp = requests.request("GET", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 200
     assert jsonResp["id"] == 35, resp.text
@@ -40,8 +40,8 @@ def test_get_books_url_notFound_p2(api_v1_books):
     resp = requests.request("GET", url,  headers=headers, data=json.dumps(data))
     resp = requests.get(url, data=data)
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 404
     assert jsonResp["title"] == "Not Found", resp.text
@@ -58,8 +58,8 @@ def test_get_books_url_invalidId_p1(api_v1_books):
 
     resp = requests.request("GET", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 400
     assert jsonResp["title"] == "One or more validation errors occurred.", resp.text
@@ -81,8 +81,8 @@ def test_get_books_url_withoutId_requestId_p3(api_v1_books):
 
     resp = requests.request("GET", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 200
     assert len(jsonResp) > 1
@@ -99,8 +99,8 @@ def test_get_books_url_string_p2(api_v1_books):
 
     resp = requests.request("GET", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 400
     assert jsonResp["title"] == "One or more validation errors occurred.", resp.text
@@ -118,8 +118,8 @@ def test_get_books_url_withHash_p2(api_v1_books):
 
     resp = requests.request("GET", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 200
     assert jsonResp[0]["id"] == 1, resp.text
@@ -138,8 +138,8 @@ def test_get_books_url_withSymbol_p3(api_v1_books):
 
     resp = requests.request("GET", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 400
     assert jsonResp["title"] == "One or more validation errors occurred.", resp.text
@@ -157,8 +157,8 @@ def test_get_books_url_withFloat_p3(api_v1_books):
 
     resp = requests.request("GET", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 400
     assert jsonResp["title"] == "One or more validation errors occurred.", resp.text
