@@ -25,7 +25,7 @@
   }
   ```
 - Scope
-![alt text](https://github.com/taurus5650/Drafting-pytest_api_fakerestapi.azurewebsites/blob/main/xmind/get-api-v1-books-id.png)
+  ![alt text](https://github.com/taurus5650/Drafting-pytest_api_fakerestapi.azurewebsites/blob/main/xmind/get-api-v1-books-id.png)
 
 
 ### /api/v1/Users` testing scope
@@ -40,11 +40,11 @@
   }
   ```
 - Scope
-![alt text](https://github.com/taurus5650/Drafting-pytest_api_fakerestapi.azurewebsites/blob/main/xmind/post-api-v1-users.png)
+  ![alt text](https://github.com/taurus5650/Drafting-pytest_api_fakerestapi.azurewebsites/blob/main/xmind/post-api-v1-users.png)
 
 
 ### Execution
-![alt text](https://github.com/taurus5650/Drafting-pytest_api_fakerestapi.azurewebsites/blob/main/xmind/get-api-v1-books-id.png)
-![alt text](https://github.com/taurus5650/Drafting-pytest_api_fakerestapi.azurewebsites/blob/main/xmind/post-api-v1-users-result.png)
+  ![alt text](https://github.com/taurus5650/Drafting-pytest_api_fakerestapi.azurewebsites/blob/main/xmind/get-api-v1-books-id-result.png)
+  ![alt text](https://github.com/taurus5650/Drafting-pytest_api_fakerestapi.azurewebsites/blob/main/xmind/post-api-v1-users-result.png)
 
 
