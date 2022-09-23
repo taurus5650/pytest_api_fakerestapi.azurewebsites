@@ -26,8 +26,8 @@ def test_post_users_validId_p0(api_v1_users):
 
     resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 200
     assert jsonResp["id"] == Id, resp.text
@@ -55,8 +55,8 @@ def test_post_users_userNameNullalble_p2(api_v1_users):
 
     resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 200
     assert jsonResp["id"] == Id, resp.text
@@ -84,8 +84,8 @@ def test_post_users_passwordNullalble_p2(api_v1_users):
 
     resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 200
     assert jsonResp["id"] == Id, resp.text
@@ -113,8 +113,8 @@ def test_post_users_idAsStringWithNum_p2(api_v1_users):
 
     resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 200
     assert jsonResp["id"] == Id, resp.text
@@ -141,8 +141,8 @@ def test_post_users_idAsStringWithWords_p3(api_v1_users):
 
     resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 400
     assert jsonResp["errors"]["$.id"] == ['The JSON value could not be converted to System.Int32. Path: $.id | LineNumber: 0 | BytePositionInLine: 15.']
@@ -167,8 +167,8 @@ def test_post_users_userNameWithSymbol_p1(api_v1_users):
 
     resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 200
     assert jsonResp["id"] == Id, resp.text
@@ -195,8 +195,8 @@ def test_post_users_passwordWithSymbol_p1(api_v1_users):
 
     resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 200
     assert jsonResp["id"] == Id, resp.text
@@ -224,10 +224,11 @@ def test_post_users_largeUserId_p3(api_v1_users):
 
     resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
     jsonResp = json.loads(resp.text)
-    LOGGER.info("Req : \n" + str(data))
-    LOGGER.info("Resp : \n" + str(jsonResp))
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
 
     assert resp.status_code == 200
     assert jsonResp["id"] == Id, resp.text
     assert jsonResp["userName"] == UserName, resp.text
     assert jsonResp["password"] == Password, resp.text
+
