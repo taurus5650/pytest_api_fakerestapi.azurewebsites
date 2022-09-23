@@ -204,6 +204,34 @@ def test_post_users_passwordWithSymbol_p1(api_v1_users):
     assert jsonResp["password"] == Password, resp.text
 
 
+def test_post_users_IdAs0_p0(api_v1_users):
+    url = api_v1_users
+
+    Id = 0
+    UserName = "UserTest"
+    Password = "PasswordTest"
+
+    headers = {
+        "accept": "*/*",
+        "Content-Type": "application/json; v=1.0"
+    }
+    data = {
+        "id": Id,
+        "userName": UserName,
+        "password": Password
+    }
+
+    resp = requests.request("POST", url,  headers=headers, data=json.dumps(data))
+    jsonResp = json.loads(resp.text)
+    LOGGER.info("Req : \n" + json.dumps(data, indent=2))
+    LOGGER.info("Resp : \n" + json.dumps(jsonResp, indent=2))
+
+    assert resp.status_code == 200
+    assert jsonResp["id"] == Id, resp.text
+    assert jsonResp["userName"] == UserName, resp.text
+    assert jsonResp["password"] == Password, resp.text
+
+
 def test_post_users_largeUserId_p3(api_v1_users):
     randomNum = random.randint(900000000, 999999999)
     url = api_v1_users
